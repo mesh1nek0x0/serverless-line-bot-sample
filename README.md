@@ -1,4 +1,4 @@
-# serveless-line-bot-sample 
+# serveless-line-bot-sample
 
 Line Bot Sample powered by serverless with NodeJS
 <!-- One sentence about your product and what it dose.-->
@@ -14,9 +14,9 @@ Line Bot Sample powered by serverless with NodeJS
 <!-- list up your product features. -->
 - WIP :bird: bot repeat your message
 - WIP :zap: build with serverless
-- WIP :shirt: support eslint
-- WIP :mouse: support editorconfig
-- WIP :black_joker: support jest
+- :shirt: support eslint
+- :mouse: support editorconfig
+- :black_joker: support jest
 - WIP :arrows_counterclockwise: support CircleCI
 
 ---
@@ -30,21 +30,31 @@ Line Bot Sample powered by serverless with NodeJS
 
 ### WIP Step
 1. Install
+clone this repository.
+
 1. Setup
-1. ...
-
-## WIP :arrow_forward: Usage
-UsageUsageUsage
-<!-- show basic usage -->
-
-*usage1*
 ```
-$ command -optionA arg1 arg2 ...
+$ yarn install
 ```
 
-*usage2*
+1. WIP deploy
+
+## :arrow_forward: Usage
+basic usage is bellow.
+
+*invoke test local*
 ```
-$ command -optionB arg1 arg2 ...
+$ yarn invoke
+```
+
+*run test*
+```
+$ yarn test
+```
+
+*run eslint*
+```
+$ yarn lint
 ```
 
 ## :information_source: Anything else
