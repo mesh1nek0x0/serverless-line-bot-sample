@@ -1,0 +1,25 @@
+{
+  "name": "serverless-line-bot-sample",
+  "version": "0.0.1",
+  "description": "Line Bot Sample powered by serverless with NodeJS",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/mesh1nek0x0/serverless-line-bot-sample.git",
+  "author": "mesh1nek0x0 <mesh1nek0x0@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src",
+    "invoke": "sls invoke local -f hello",
+    "test": "jest --config=jest.config.json"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^6.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.1",
+    "jest": "^23.2.0",
+    "prettier": "^1.13.7",
+    "sinon": "^6.0.1"
+  }
+}
