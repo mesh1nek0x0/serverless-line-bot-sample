@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src",
-    "invoke": "sls invoke local -f hello",
+    "invoke": "sls invoke local -f hello --path src/__tests__/fixtures/event.json",
     "test": "jest --config=jest.config.json"
   },
   "dependencies": {
