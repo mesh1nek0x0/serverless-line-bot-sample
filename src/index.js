@@ -1,21 +1,18 @@
 'use strict';
-const crypto = require('crypto');
-const channelSecret = process.env.CHANNEL_SEACREST;
-const { Client } = require('@line/bot-sdk');
+const channelSecret = process.env.CHANNEL_SEACREST || 'dummuy';
+const line = require('@line/bot-sdk');
 
 module.exports.handler = async (event, context, callback) => {
     const body = event.body;
-    const signature = crypto
-        .createHmac('SHA256', channelSecret)
-        .update(body)
-        .digest('base64');
+
     // Compare X-Line-Signature request header and the signature
-    if (event.headers['X-Line-Signature'] !== signature) {
+    if (line.validateSignature(body, channelSecret, event.headers['X-Line-Signature']) === false) {
+        console.log('signature not match');
         return callback(null, 'signature not match');
     }
 
-    const client = new Client({
-        channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+    const client = new line.Client({
+        channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || 'dummy',
         channelSecret: channelSecret,
     });
 
@@ -24,15 +21,13 @@ module.exports.handler = async (event, context, callback) => {
         text: JSON.parse(event.body).events[0].message.text,
     };
 
-    client
-        .replyMessage(JSON.parse(event.body).events[0].replyToken, message)
-        .then(() => {
-            console.log('end with success');
-        })
-        .catch(err => {
-            console.log(err.message);
-            // error handling
-        });
+    try {
+        client.replyMessage(JSON.parse(event.body).events[0].replyToken, message);
+    } catch (err) {
+        console.log(err.message);
+        // error handling
+        return callback(null, 'end with failure');
+    }
 
     const response = {
         statusCode: 200,
