@@ -8,4 +8,13 @@ module.exports = class LineHelper {
         };
         return textMessage;
     }
+
+    static buildImageMessage(originalUrl, thumbnailUrl) {
+        const imageMessage = {
+            type: 'image',
+            originalContentUrl: originalUrl,
+            previewImageUrl: thumbnailUrl,
+        };
+        return imageMessage;
+    }
 };
