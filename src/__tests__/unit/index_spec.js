@@ -15,7 +15,7 @@ describe('index_spec', () => {
             sinon.stub(line, 'validateSignature').callsFake(() => {
                 return true;
             });
-            sinon.stub(line.Client.prototype, 'replyMessage').callsFake(() => {
+            const stub = sinon.stub(line.Client.prototype, 'replyMessage').callsFake(() => {
                 return Promise.resolve({ text: 'ok with stub' });
             });
 
@@ -24,7 +24,9 @@ describe('index_spec', () => {
             expect(callback.args[0][0]).toBeNull();
             // see: jest await async sample
             // https://facebook.github.io/jest/docs/en/tutorial-async.html
-            expect.assertions(2);
+
+            expect(stub.firstCall.args[1]).toEqual({ type: 'text', text: 'Hello, world' });
+            expect.assertions(3);
         });
     });
 
