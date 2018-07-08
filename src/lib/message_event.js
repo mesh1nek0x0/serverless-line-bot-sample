@@ -5,7 +5,7 @@ module.exports = class MessageEvent {
         if (!event.type || event.type !== 'message') {
             throw new Error('cannot generate message event');
         }
-        this.type_ = event.type;
+        this.type_ = event.message.type;
         this.id_ = event.message.id;
     }
 

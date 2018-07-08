@@ -8,7 +8,7 @@ describe('text_message_eventのテスト', () => {
             message: { type: 'text', id: 1234, text: 'hello' },
         });
 
-        expect(actual.type).toBe('message');
+        expect(actual.type).toBe('text');
         expect(actual.id).toBe(1234);
         expect(actual.text).toBe('hello');
     });

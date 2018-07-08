@@ -5,10 +5,10 @@ describe('message_eventのテスト', () => {
     it('LINEのMessageEventであればparseできること', () => {
         const actual = new MessageEvent({
             type: 'message',
-            message: { id: 1234, text: 'hello' },
+            message: { id: 1234, text: 'hello', type: 'text' },
         });
 
-        expect(actual.type).toBe('message');
+        expect(actual.type).toBe('text');
         expect(actual.id).toBe(1234);
     });
 
