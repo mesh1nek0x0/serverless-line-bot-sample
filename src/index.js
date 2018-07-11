@@ -1,7 +1,7 @@
 'use strict';
 const channelSecret = process.env.CHANNEL_SEACREST || 'dummuy';
 const line = require('@line/bot-sdk');
-const lineHelper = require('./lib/line_helper');
+const MessageBuilder = require('./lib/message_builder');
 
 module.exports.handler = async (event, context, callback) => {
     const body = event.body;
@@ -20,7 +20,7 @@ module.exports.handler = async (event, context, callback) => {
     try {
         client.replyMessage(
             JSON.parse(event.body).events[0].replyToken,
-            lineHelper.buildTextMessage(JSON.parse(event.body).events[0].message.text)
+            MessageBuilder.build(JSON.parse(event.body).events[0])
         );
     } catch (err) {
         console.log(err.message);
