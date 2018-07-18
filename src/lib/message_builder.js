@@ -10,7 +10,22 @@ module.exports = class MessageBuilder {
         let message = {};
         if (type === 'text') {
             const textMessage = new TextMessageEvent(event);
-            message = LineHelper.buildTextMessage(textMessage.text);
+            if (textMessage.text === 'confirm') {
+                message = LineHelper.buildConfirmTemplateMessage([
+                    {
+                        type: 'message',
+                        label: 'Yes',
+                        text: 'yes',
+                    },
+                    {
+                        type: 'message',
+                        label: 'No',
+                        text: 'no',
+                    },
+                ]);
+            } else {
+                message = LineHelper.buildTextMessage(textMessage.text);
+            }
         } else {
             message = LineHelper.buildTextMessage('unknow type was recieved...');
         }

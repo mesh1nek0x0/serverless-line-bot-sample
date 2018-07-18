@@ -17,4 +17,17 @@ module.exports = class LineHelper {
         };
         return imageMessage;
     }
+
+    static buildConfirmTemplateMessage(choices, confirmText = 'Are you sure?') {
+        const confirmMessage = {
+            type: 'template',
+            altText: 'this is a confirm template',
+            template: {
+                type: 'confirm',
+                text: confirmText,
+                actions: choices,
+            },
+        };
+        return confirmMessage;
+    }
 };

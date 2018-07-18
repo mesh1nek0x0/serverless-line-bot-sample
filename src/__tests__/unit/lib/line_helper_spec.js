@@ -19,4 +19,30 @@ describe('line_helperのtest', () => {
             previewImageUrl: 'preUrl',
         });
     });
+
+    it('buildConfirmTemplateMessageでconfirm形式のメッセージが生成できること', () => {
+        const choices = [
+            {
+                type: 'message',
+                label: 'Hoge',
+                text: 'hoge',
+            },
+            {
+                type: 'message',
+                label: 'BAR',
+                text: 'bar',
+            },
+        ];
+
+        const actual = lineHelper.buildConfirmTemplateMessage(choices);
+        expect(actual).toEqual({
+            type: 'template',
+            altText: 'this is a confirm template',
+            template: {
+                type: 'confirm',
+                text: 'Are you sure?',
+                actions: choices,
+            },
+        });
+    });
 });
