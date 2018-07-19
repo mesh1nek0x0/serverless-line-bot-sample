@@ -2,12 +2,22 @@
 const MessageBuilder = require('../../../lib/message_builder');
 
 describe('message_builderのtest', () => {
-    it('text型のMessageEventでtextのレスポンスメッセージが生成されること', () => {
-        const msg = MessageBuilder.build({
-            type: 'message',
-            message: { type: 'text', id: 1234, text: 'hello' },
+    describe('text型のテスト', () => {
+        it('text型のMessageEventでtextのレスポンスメッセージが生成されること', () => {
+            const msg = MessageBuilder.build({
+                type: 'message',
+                message: { type: 'text', id: 1234, text: 'confirm' },
+            });
+            expect(msg.type).toBe('template');
         });
-        expect(msg.type).toBe('text');
+
+        it('特定のtextの場合、confirmTemplateの形式のメッセージが生成されること', () => {
+            const msg = MessageBuilder.build({
+                type: 'message',
+                message: { type: 'text', id: 1234, text: 'hello' },
+            });
+            expect(msg.type).toBe('text');
+        });
     });
 
     it('未定義のMessageEventでは、textのレスポンスメッセージが生成されること', () => {
